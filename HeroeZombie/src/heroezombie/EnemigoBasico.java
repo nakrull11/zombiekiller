@@ -7,40 +7,33 @@ package heroezombie;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
 
 /**
  *
  * @author gustavo
  */
-public class Jugador extends GameObject {
+public class EnemigoBasico extends GameObject{
 
-    private Random r;
-    
-    public Jugador(int x, int y, ID id) {
+    public EnemigoBasico(int x, int y, ID id) {
         super(x, y, id);
-        r = new Random();
-      
+        velX=5;
+        velY=5;
+        
     }
 
-    
     public void tick() {
-        x +=velX;
-        y +=velY;
+        x += velX;
+        y += velY;
         
-        x = Juego.clamp(x, 0, Juego.ancho-37);
-         y = Juego.clamp(y, 0, Juego.alto-60);
-       
+        if (y <=0 || y > Juego.alto-32) velY *= -1;
+        if (x <=0 || x > Juego.ancho-16) velX *= -1;
+
     }
 
     
     public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.fillRect(x, y, 32, 32);
-        
+        g.setColor(Color.red);
+        g.fillRect(x, y, 16, 16);
     }
-    
-    
-    
     
 }

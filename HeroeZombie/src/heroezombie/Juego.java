@@ -30,22 +30,27 @@ public class Juego extends Canvas implements Runnable {
     
     private Random r;
     
+    private HUD hud;
+    
     public Juego(){
         handler = new Handler();
         
         this.addKeyListener(new KeyInput(handler));
         
+        hud = new HUD();
+        
         new Ventana (ancho, alto,"Heroe Zombie",this);
         
-    
+        this.requestFocus();
+        
         r = new Random();
         
         
         handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador));
-        handler.addObject(new Jugador(ancho/2+64,alto/2-32,ID.Jugador2));
-        
-        
-        
+        for (int i = 0; i < 5; i++) {
+            handler.addObject(new EnemigoBasico(r.nextInt(ancho),r.nextInt(alto),ID.EnemigoBasico));
+        }
+
     }
     
     
@@ -100,6 +105,7 @@ public class Juego extends Canvas implements Runnable {
     
     private void tick(){
         handler.tick();
+        hud.tick();
     }
     
     private void render(){
@@ -113,10 +119,22 @@ public class Juego extends Canvas implements Runnable {
       g.setColor(Color.black);
       g.fillRect(0, 0, ancho, alto);
       
+      
+      
       handler.render(g);
+      hud.render(g);
       
       g.dispose();
       bs.show();
+    }
+    
+    public static int clamp(int var, int min, int max){
+        if (var>=max) {
+            return var = max;
+        }else if (var <=min) {
+            return var = min;
+        }else return var;
+        
     }
     
     
