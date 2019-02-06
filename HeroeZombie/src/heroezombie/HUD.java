@@ -18,17 +18,20 @@ public class HUD {
     
     
     public void tick(){
-        
         vida= Juego.clamp(vida, 0, 100);
+    }
+    
+    public void daño(int cantidad){
+        vida -= cantidad;
     }
     
     public void render(Graphics g){
         g.setColor(Color.red);
-        g.fillRect(15, 15,200 , 32);
+        g.fillRect(15, 15,200 , 16);
         g.setColor(Color.green);
-        g.fillRect(15, 15,vida*2 , 32);
-         g.setColor(Color.white);
-        g.drawRect(15, 15,200 , 32);
+        g.fillRect(15, 15,vida*2 , 16);
+        g.setColor(Color.white);
+        g.drawRect(15, 15,200 , 16);
     }
     
 }

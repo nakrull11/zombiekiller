@@ -39,7 +39,7 @@ public class Handler {
         
     }
     
-    public void removeObject(GameObject objetc){
+    public void removeObject(GameObject object){
         this.object.remove(object);
     }
     

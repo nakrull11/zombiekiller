@@ -20,6 +20,8 @@ public class Juego extends Canvas implements Runnable {
     /**
      * @param args the command line arguments
      */
+    
+    //////////VARIABLES/////////
     public static final int ancho = 640, alto= ancho / 12 * 9;
     
     private Thread thread;
@@ -32,27 +34,29 @@ public class Juego extends Canvas implements Runnable {
     
     private HUD hud;
     
+    //////////MÉTODOS//////////
+    
     public Juego(){
         handler = new Handler();
         
         this.addKeyListener(new KeyInput(handler));
         
-        hud = new HUD();
-        
         new Ventana (ancho, alto,"Heroe Zombie",this);
         
-        this.requestFocus();
+        hud = new HUD();
+        
+        
         
         r = new Random();
+      
+        handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
+        handler.addObject(new EnemigoBasico(r.nextInt(ancho),r.nextInt(alto),ID.EnemigoBasico, handler));
+        handler.addObject(new EnemigoBasico(r.nextInt(ancho)+1,r.nextInt(alto),ID.EnemigoBasico, handler));
+        handler.addObject(new EnemigoBasico(r.nextInt(ancho)+2,r.nextInt(alto),ID.EnemigoBasico, handler));
+        handler.addObject(new EnemigoBasico(r.nextInt(ancho)+3,r.nextInt(alto),ID.EnemigoBasico, handler));
         
-        
-        handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador));
-        for (int i = 0; i < 5; i++) {
-            handler.addObject(new EnemigoBasico(r.nextInt(ancho),r.nextInt(alto),ID.EnemigoBasico));
-        }
 
     }
-    
     
     public synchronized void start(){
         thread = new Thread(this);
@@ -60,7 +64,7 @@ public class Juego extends Canvas implements Runnable {
         running=true;
     }
     
-        public synchronized void stop(){
+    public synchronized void stop(){
         try{
             
             thread.join();
@@ -72,6 +76,7 @@ public class Juego extends Canvas implements Runnable {
     }
     
     public void run(){
+        this.requestFocus();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -129,6 +134,7 @@ public class Juego extends Canvas implements Runnable {
     }
     
     public static int clamp(int var, int min, int max){
+        //metodo clamp para colisiones de ventana
         if (var>=max) {
             return var = max;
         }else if (var <=min) {
@@ -140,7 +146,7 @@ public class Juego extends Canvas implements Runnable {
     
  
     public static void main(String[] args) {
-        // TODO code application logic here
+        
         new Juego();
         
     }

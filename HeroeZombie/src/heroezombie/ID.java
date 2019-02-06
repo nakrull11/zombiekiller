@@ -12,6 +12,7 @@ package heroezombie;
 public enum ID {
     
     Jugador(),
-    EnemigoBasico();
+    EnemigoBasico(),
+    Trial();
     
 }
