@@ -16,9 +16,17 @@ public class HUD {
     
     public static int vida = 100;
     
+    private int greenValue = 0;
+    
+    private int score = 0;
+    
+    private int level = 1;
     
     public void tick(){
         vida= Juego.clamp(vida, 0, 100);
+        greenValue = Juego.clamp(greenValue, 0, 255);
+        greenValue= vida*2;
+        score++;
     }
     
     public void daño(int cantidad){
@@ -28,10 +36,28 @@ public class HUD {
     public void render(Graphics g){
         g.setColor(Color.red);
         g.fillRect(15, 15,200 , 16);
-        g.setColor(Color.green);
+        g.setColor(new Color (75, greenValue, 0));
         g.fillRect(15, 15,vida*2 , 16);
         g.setColor(Color.white);
         g.drawRect(15, 15,200 , 16);
+        g.drawString("Puntuación: " + score, 15 , 64);
+        g.drawString("Nivel: " + level, 15, 80);
     }
-    
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+        
 }

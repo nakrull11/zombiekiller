@@ -37,7 +37,7 @@ public class Jugador extends GameObject {
         
         x = Juego.clamp(x, 0, Juego.ancho-37);
         y = Juego.clamp(y, 0, Juego.alto-60);
-        handler.addObject(new Trial(x,y,ID.EnemigoBasico,handler,Color.BLUE,32,32,0.07f));
+        handler.addObject(new Trial(x,y,ID.EnemigoBasico,handler,Color.BLUE,32,32,0.09f));
         colision();
        
     }

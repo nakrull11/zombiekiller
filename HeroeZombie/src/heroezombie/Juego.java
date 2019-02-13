@@ -34,6 +34,8 @@ public class Juego extends Canvas implements Runnable {
     
     private HUD hud;
     
+    private Spawner spawner;
+    
     //////////MÉTODOS//////////
     
     public Juego(){
@@ -44,16 +46,13 @@ public class Juego extends Canvas implements Runnable {
         new Ventana (ancho, alto,"Heroe Zombie",this);
         
         hud = new HUD();
-        
-        
+       
+        spawner = new Spawner (handler, hud);
         
         r = new Random();
       
         handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
         handler.addObject(new EnemigoBasico(r.nextInt(ancho),r.nextInt(alto),ID.EnemigoBasico, handler));
-        handler.addObject(new EnemigoBasico(r.nextInt(ancho)+1,r.nextInt(alto),ID.EnemigoBasico, handler));
-        handler.addObject(new EnemigoBasico(r.nextInt(ancho)+2,r.nextInt(alto),ID.EnemigoBasico, handler));
-        handler.addObject(new EnemigoBasico(r.nextInt(ancho)+3,r.nextInt(alto),ID.EnemigoBasico, handler));
         
 
     }
@@ -111,6 +110,7 @@ public class Juego extends Canvas implements Runnable {
     private void tick(){
         handler.tick();
         hud.tick();
+        spawner.tick();
     }
     
     private void render(){

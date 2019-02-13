@@ -13,6 +13,7 @@ public enum ID {
     
     Jugador(),
     EnemigoBasico(),
+    EnemigoRapido(),
     Trial();
     
 }
