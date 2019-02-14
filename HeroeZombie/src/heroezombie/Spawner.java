@@ -33,7 +33,7 @@ public class Spawner {
                 handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho),r.nextInt(Juego.alto),ID.EnemigoBasico,handler));
                 
                 if(hud.getLevel() %5 ==0){
-                    handler.addObject(new EnemigoRapido(r.nextInt(Juego.ancho),r.nextInt(Juego.alto),ID.EnemigoRapido,handler));
+                    handler.addObject(new EnemigoRapido(r.nextInt(Juego.ancho-100),r.nextInt(Juego.alto-100),ID.EnemigoRapido,handler));
                 }
             }   
                 
