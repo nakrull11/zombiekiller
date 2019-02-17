@@ -13,15 +13,19 @@ import java.awt.Rectangle;
  *
  * @author gustavo
  */
-public class EnemigoRapido extends GameObject{
+public class SmartEnemy extends GameObject{
 
     private Handler handler;
+    private GameObject player; 
     
-    public EnemigoRapido(int x, int y, ID id,Handler handler) {
+    public SmartEnemy(float x, float y, ID id,Handler handler) {
         super(x, y, id);
         this.handler = handler;
-        velX=3;
-        velY=9;
+        for (int i = 0; i < handler.object.size(); i++) {
+            if (handler.object.get(i).getId() == ID.Jugador) {
+                player = handler.object.get(i);
+            }
+        }
         
     }
 
@@ -30,10 +34,16 @@ public class EnemigoRapido extends GameObject{
         x += velX;
         y += velY;
         
-        if (y <=0 || y > Juego.alto-32) velY *= -1;
-        if (x <=0 || x > Juego.ancho-16) velX *= -1;
+        if(x < player.getX())
+            velX = (float) 0.5;
+        if(x > player.getX())
+            velX = (float) -0.5;
+        if(y < player.getY())
+            velY = (float) 0.5;
+        if(y > player.getY())
+            velY = (float) -0.5;
         
-        handler.addObject(new Trial(x,y,ID.EnemigoRapido,handler,Color.CYAN,16,16,0.04f));
+       handler.addObject(new Trial(x,y,ID.SmartEnemy,handler,Color.red,16,8,0.04f));
         
         
 
@@ -41,7 +51,7 @@ public class EnemigoRapido extends GameObject{
 
     
     public void render(Graphics g) {
-        g.setColor(Color.cyan);
+        g.setColor(Color.green);
         g.fillRect((int)x,(int)y, 16, 16);
     }
 

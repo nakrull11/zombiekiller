@@ -24,7 +24,7 @@ public class Trial extends GameObject {
     private int ancho;
     private float vida;
 
-    public Trial(int x, int y, ID id,Handler handler,Color color,int ancho,int alto,float vida) {
+    public Trial(float x, float y, ID id,Handler handler,Color color,int ancho,int alto,float vida) {
         super(x, y, id);
         this.handler = handler;
         this.color = color;
@@ -32,8 +32,7 @@ public class Trial extends GameObject {
         this.alto = alto;
         this.vida = vida;
     }
-    
-    
+        
 
     
     public Rectangle getBounds() {
@@ -53,7 +52,7 @@ public class Trial extends GameObject {
         g2d.setComposite(makeTransparent(alpha));
         
         g.setColor(color);
-        g.fillRect(x, y, ancho, alto);
+        g.fillRect((int)x,(int)y, ancho, alto);
         
         g2d.setComposite(makeTransparent(1));
 

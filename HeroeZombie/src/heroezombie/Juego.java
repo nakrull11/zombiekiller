@@ -52,7 +52,8 @@ public class Juego extends Canvas implements Runnable {
         r = new Random();
       
         handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
-        handler.addObject(new EnemigoBasico(r.nextInt(ancho),r.nextInt(alto),ID.EnemigoBasico, handler));
+        handler.addObject(new SmartEnemy(r.nextInt(Juego.ancho)-16,r.nextInt(Juego.alto)-16,ID.SmartEnemy,handler));
+        //handler.addObject(new EnemigoBasico(r.nextInt(ancho),r.nextInt(alto),ID.EnemigoBasico, handler));
         
 
     }
@@ -133,7 +134,7 @@ public class Juego extends Canvas implements Runnable {
       bs.show();
     }
     
-    public static int clamp(int var, int min, int max){
+    public static float clamp(float var, float min, float max){
         //metodo clamp para colisiones de ventana
         if (var>=max) {
             return var = max;

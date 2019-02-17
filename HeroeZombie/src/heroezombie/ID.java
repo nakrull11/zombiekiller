@@ -14,6 +14,7 @@ public enum ID {
     Jugador(),
     EnemigoBasico(),
     EnemigoRapido(),
+    SmartEnemy(),
     Trial();
     
 }

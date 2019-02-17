@@ -20,7 +20,7 @@ public class Jugador extends GameObject {
     private Random r;
     private Handler handler;
     
-    public Jugador(int x, int y, ID id,Handler handler) {
+    public Jugador(float x, float y, ID id,Handler handler) {
         super(x, y, id);
         this.handler = handler;
         r = new Random();
@@ -28,7 +28,7 @@ public class Jugador extends GameObject {
     }
     
     public  Rectangle getBounds(){
-        return new Rectangle(x,y,32,32);
+        return new Rectangle((int)x,(int)y,32,32);
     }
     
     public void tick() {
@@ -37,7 +37,7 @@ public class Jugador extends GameObject {
         
         x = Juego.clamp(x, 0, Juego.ancho-37);
         y = Juego.clamp(y, 0, Juego.alto-60);
-        handler.addObject(new Trial(x,y,ID.EnemigoBasico,handler,Color.BLUE,32,32,0.09f));
+        //handler.addObject(new Trial(x,y,ID.Jugador,handler,Color.BLUE,32,32,0.09f));
         colision();
        
     }
@@ -65,7 +65,7 @@ public class Jugador extends GameObject {
     public void render(Graphics g) {
         
         g.setColor(Color.blue);
-        g.fillRect(x, y, 32, 32);
+        g.fillRect((int)x,(int)y, 32, 32);
         
     }
     
