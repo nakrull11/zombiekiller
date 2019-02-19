@@ -36,7 +36,7 @@ public class Juego extends Canvas implements Runnable {
     
     private Spawner spawner;
     
-    //////////MÉTODOS//////////
+    //////////METODOS//////////
     
     public Juego(){
         handler = new Handler();
@@ -52,8 +52,7 @@ public class Juego extends Canvas implements Runnable {
         r = new Random();
       
         handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
-        handler.addObject(new SmartEnemy(r.nextInt(Juego.ancho)-16,r.nextInt(Juego.alto)-16,ID.SmartEnemy,handler));
-        //handler.addObject(new EnemigoBasico(r.nextInt(ancho),r.nextInt(alto),ID.EnemigoBasico, handler));
+        handler.addObject(new Boss((Juego.ancho/2)-48,-120,ID.Boss,handler));
         
 
     }

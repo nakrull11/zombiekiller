@@ -25,17 +25,17 @@ public class Spawner {
     
     public void tick(){
         scoreKeep++;
-        if(scoreKeep >= 100){
+        if(scoreKeep >= 500){
             scoreKeep =0;
             hud.setLevel(hud.getLevel()+1 );
             
             
             if(hud.getScore()% 2 ==0){
-                //handler.addObject(new SmartEnemy(r.nextInt(Juego.ancho)-100,r.nextInt(Juego.alto)-100,ID.SmartEnemy,handler));
+                handler.addObject(new SmartEnemy(r.nextInt(Juego.ancho)-100,r.nextInt(Juego.alto)-100,ID.SmartEnemy,handler));
                 
                 
                 if(hud.getLevel() %5 ==0){
-                    //handler.addObject(new EnemigoRapido(r.nextInt(Juego.ancho-100),r.nextInt(Juego.alto-100),ID.EnemigoRapido,handler));
+                    handler.addObject(new EnemigoRapido(r.nextInt(Juego.ancho-100),r.nextInt(Juego.alto-100),ID.EnemigoRapido,handler));
                 }
             }   
                 

@@ -29,7 +29,7 @@ public class HUD {
         score++;
     }
     
-    public void daño(int cantidad){
+    public void danio(int cantidad){
         vida -= cantidad;
     }
     
@@ -40,7 +40,7 @@ public class HUD {
         g.fillRect(15, 15, (int) (vida*2), 16);
         g.setColor(Color.white);
         g.drawRect(15, 15,200 , 16);
-        g.drawString("Puntuación: " + score, 15 , 64);
+        g.drawString("Puntuacion: " + score, 15 , 64);
         g.drawString("Nivel: " + level, 15, 80);
     }
 

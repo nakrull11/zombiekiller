@@ -35,13 +35,16 @@ public class SmartEnemy extends GameObject{
         y += velY;
         
         if(x < player.getX())
-            velX = (float) 0.5;
+            velX = (float) 1;
         if(x > player.getX())
-            velX = (float) -0.5;
+            velX = (float) -1;
         if(y < player.getY())
-            velY = (float) 0.5;
+            velY = (float) 1;
         if(y > player.getY())
-            velY = (float) -0.5;
+            velY = (float) -1;
+        
+        if (y <=0 || y > Juego.alto-32) velY *= -1;
+        if (x <=0 || x > Juego.ancho-16) velX *= -1;
         
        handler.addObject(new Trial(x,y,ID.SmartEnemy,handler,Color.red,16,8,0.04f));
         
