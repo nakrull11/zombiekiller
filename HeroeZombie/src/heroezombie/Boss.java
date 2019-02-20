@@ -43,7 +43,15 @@ public class Boss extends GameObject{
         if(timer2 <=0){
             if(velX == 0) velX =2;
             int spawn = r.nextInt(10);
+            
+            if (velX > 0)velX+=0.005f;
+            else if(velX < 0)velX -=0.005f;
+            
+            velX= Juego.clamp(velX, -10, 10);
+            
             if(spawn == 0) handler.addObject(new ProyectilBoss(x,y,ID.ProyectilBoss,handler));
+            
+            
                     
         }
         
