@@ -5,31 +5,12 @@
  */
 package heroezombie;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JOptionPane;
-
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
 /**
  *
@@ -88,7 +69,7 @@ public class Juego extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
         handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
         handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoBasico,handler));
-        Music.play("C:/Users/gustavo/Desktop/zombiekiller/zombiekiller/data/audio/TeknoAXE.wav");
+        Music.play("C:/Users/gustavo/Desktop/gitProjects/zombiekiller/zombiekiller/data/audio/TeknoAXE.wav");
         
         
         }
