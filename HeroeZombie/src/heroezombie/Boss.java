@@ -56,13 +56,8 @@ public class Boss extends GameObject{
                 if(spawn == 0) handler.addObject(new ProyectilBoss(x,y,ID.ProyectilBoss,handler));
                 if (x <=0 || x > Juego.ancho-96) velX *= -1;
             }
-        }else handler.limpiarEnemigos();
+        }else handler.removeObject(this);;
         //if (y <=0 || y > Juego.alto-32) velY *= -1;
-         
-        
-          
-        
-          
     }
     
     private void colision() {

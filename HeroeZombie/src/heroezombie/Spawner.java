@@ -50,11 +50,6 @@ public class Spawner {
             
             if (hud.getLevel() == 10) {
                 handler.limpiarEnemigos();
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Spawner.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 handler.addObject(new Boss((Juego.ancho / 2)-48,-120,ID.Boss,handler));
                 
             }   
