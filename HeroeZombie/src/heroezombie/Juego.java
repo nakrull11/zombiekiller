@@ -36,6 +36,13 @@ public class Juego extends Canvas implements Runnable {
     
     private Spawner spawner;
     
+    public enum STATE{
+        Menu,
+        Game
+    };
+    
+    public STATE gameState = STATE.Game;
+    
     //////////METODOS//////////
     
     public Juego(){
@@ -50,11 +57,11 @@ public class Juego extends Canvas implements Runnable {
         spawner = new Spawner (handler, hud);
         
         r = new Random();
-      
-        handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
-       // handler.addObject(new Boss((Juego.ancho/2)-48,-120,ID.Boss,handler));
         
-
+        if (gameState == STATE.Game) {
+        handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
+        handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoBasico,handler));    
+        }
     }
     
     public synchronized void start(){
@@ -109,8 +116,10 @@ public class Juego extends Canvas implements Runnable {
     
     private void tick(){
         handler.tick();
+        if (gameState == STATE.Game) {
         hud.tick();
-        spawner.tick();
+        spawner.tick();    
+        }
     }
     
     private void render(){
@@ -124,10 +133,12 @@ public class Juego extends Canvas implements Runnable {
       g.setColor(Color.black);
       g.fillRect(0, 0, ancho, alto);
       
-      
+        if (gameState == STATE.Game) {
+            hud.render(g);    
+        }
       
       handler.render(g);
-      hud.render(g);
+      
       
       g.dispose();
       bs.show();

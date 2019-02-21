@@ -5,6 +5,8 @@
  */
 package heroezombie;
 
+import static heroezombie.Juego.alto;
+import static heroezombie.Juego.ancho;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
@@ -41,6 +43,22 @@ public class Handler {
     
     public void removeObject(GameObject object){
         this.object.remove(object);
+    }
+    
+    public void limpiarEnemigos(){
+        for (int i = 0; i < object.size(); i++) {
+            GameObject tempObject = object.get(i);
+            
+            if (tempObject.getId() == ID.Jugador) {
+                
+                object.clear();
+                
+                addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,this));
+                //el jugador va a aparecer en la posicion en la que estaba
+                //addObject(new Jugador((int)tempObject.getX(),(int)tempObject.getY(),ID.Jugador,this));
+                
+            }
+        }
     }
     
     
