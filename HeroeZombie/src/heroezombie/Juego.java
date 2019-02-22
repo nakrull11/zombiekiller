@@ -35,43 +35,43 @@ public class Juego extends Canvas implements Runnable {
     
     private HUD hud;
     
-    private URL audio=null;
-    
     private Spawner spawner;
     
-    private Music music;
+    private Menu menu;
     
     public enum STATE{
         Menu,
         Game
     };
     
-    public STATE gameState = STATE.Game;
+    public STATE gameState = STATE.Menu;
     
     //////////METODOS//////////
     
     public Juego(){
         handler = new Handler();
         
+        menu = new Menu(this,handler);
+        
         this.addKeyListener(new KeyInput(handler));
+        
+        this.addMouseListener(menu);
         
         new Ventana (ancho, alto,"Heroe Zombie",this);
         
         hud = new HUD();
-       
+        
         spawner = new Spawner (handler, hud);
         
         r = new Random();
         
-        music = new Music();
+        new Music();
         
         
         if (gameState == STATE.Game) {
-        handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
-        handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoBasico,handler));
-        Music.play("C:/Users/gustavo/Desktop/gitProjects/zombiekiller/zombiekiller/data/audio/TeknoAXE.wav");
-        
-        
+        	handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
+        	handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoBasico,handler));
+        	Music.play("C:/Users/gustavo/Desktop/gitProjects/zombiekiller/zombiekiller/data/audio/TeknoAXE.wav");
         }
     }
     
@@ -92,7 +92,6 @@ public class Juego extends Canvas implements Runnable {
         }
     }
     
-
     public void run(){
         this.requestFocus();
         long lastTime = System.nanoTime();
@@ -131,10 +130,13 @@ public class Juego extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
         hud.tick();
         spawner.tick();    
+        }else if(gameState == STATE.Menu) {
+        	menu.tick();
         }
     }
     
     private void render(){
+    	 
       BufferStrategy bs = this.getBufferStrategy();
       if(bs == null){
           this.createBufferStrategy(3);
@@ -144,14 +146,13 @@ public class Juego extends Canvas implements Runnable {
       Graphics g = bs.getDrawGraphics();
       g.setColor(Color.black);
       g.fillRect(0, 0, ancho, alto);
+      handler.render(g);
       
         if (gameState == STATE.Game) {
             hud.render(g);    
+        }else if(gameState == STATE.Menu){
+        	menu.render(g);
         }
-      
-      handler.render(g);
-      
-      
       g.dispose();
       bs.show();
     }
@@ -166,8 +167,6 @@ public class Juego extends Canvas implements Runnable {
         
     }
     
-    
- 
     public static void main(String[] args) {
         
         new Juego();
