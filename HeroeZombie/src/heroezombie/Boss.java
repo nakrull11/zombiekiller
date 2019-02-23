@@ -20,15 +20,17 @@ import java.util.logging.Logger;
 public class Boss extends GameObject{
 
     private Handler handler;
+    public Color c;
     Random r = new Random();
     private  short life = 200;
     private int timer=70;
     private int timer2=50;
     
     
-    public Boss(int x, int y, ID id,Handler handler) {
+    public Boss(int x, int y, ID id,Handler handler,Color c) {
         super(x, y, id);
-        this.handler = handler;;
+        this.handler = handler;
+        this.c= c;
         velX=0;
         velY=2;
         
@@ -36,7 +38,7 @@ public class Boss extends GameObject{
 
     public void tick() {
         if (!muerte()) {
-           colision(); 
+           //colision(); 
           x += velX;
           y += velY;
         
@@ -78,7 +80,7 @@ public class Boss extends GameObject{
     }
     
     public void render(Graphics g) {
-        g.setColor(Color.red);
+        g.setColor(c);
         g.fillRect((int)x,(int)y, 64, 64);
         
     }

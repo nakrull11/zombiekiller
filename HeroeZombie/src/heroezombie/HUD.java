@@ -16,11 +16,11 @@ public class HUD {
     
     public static float vida = 100;
     
-    private float greenValue = 0;
+    public static float  greenValue = 0;
     
-    private int score = 0;
+    public static int score = 0;
     
-    private int level = 1;
+    public static int level = 1;
     
     public void tick(){
         vida= Juego.clamp(vida, 0, 100);

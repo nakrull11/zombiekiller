@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="HeroeZombie/src"/>
-	<classpathentry kind="lib" path="HeroeZombie/dist/HeroeZombie.jar"/>
+	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="output" path="HeroeZombie/build/classes"/>
 </classpath>

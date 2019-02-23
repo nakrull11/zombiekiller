@@ -12,6 +12,8 @@ import java.awt.image.BufferStrategy;
 import java.net.URL;
 import java.util.Random;
 
+import heroezombie.Juego.STATE;
+
 /**
  *
  * @author gustavo
@@ -41,10 +43,11 @@ public class Juego extends Canvas implements Runnable {
     
     public enum STATE{
         Menu,
+        Help,
         Game
     };
     
-    public STATE gameState = STATE.Menu;
+    public static STATE gameState = STATE.Menu;
     
     //////////METODOS//////////
     
@@ -67,18 +70,13 @@ public class Juego extends Canvas implements Runnable {
         
         new Music();
         
-        
-        if (gameState == STATE.Game) {
-        	handler.addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,handler));
-        	handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoBasico,handler));
-        	Music.play("C:/Users/gustavo/Desktop/gitProjects/zombiekiller/zombiekiller/data/audio/TeknoAXE.wav");
-        }
     }
     
     public synchronized void start(){
         thread = new Thread(this);
         thread.start();
         running=true;
+        
     }
     
     public synchronized void stop(){
@@ -94,6 +92,7 @@ public class Juego extends Canvas implements Runnable {
     
     public void run(){
         this.requestFocus();
+        
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -117,7 +116,7 @@ public class Juego extends Canvas implements Runnable {
                             if(System.currentTimeMillis() - timer > 1000)
                             {
                                 timer += 1000;
-                                System.out.println("FPS: "+ frames);
+                                //System.out.println("FPS: "+ frames);
                                 frames = 0;
                             }
         }
@@ -129,8 +128,8 @@ public class Juego extends Canvas implements Runnable {
         handler.tick();
         if (gameState == STATE.Game) {
         hud.tick();
-        spawner.tick();    
-        }else if(gameState == STATE.Menu) {
+        spawner.tick();
+        }else if(gameState == STATE.Menu || gameState == STATE.Help) {
         	menu.tick();
         }
     }
@@ -150,7 +149,7 @@ public class Juego extends Canvas implements Runnable {
       
         if (gameState == STATE.Game) {
             hud.render(g);    
-        }else if(gameState == STATE.Menu){
+        }else if(gameState == STATE.Menu || gameState == STATE.Help){
         	menu.render(g);
         }
       g.dispose();
