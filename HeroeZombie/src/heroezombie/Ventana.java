@@ -28,9 +28,6 @@ public class Ventana extends Canvas{
         jframe.add(juego);
         jframe.setVisible(true);
         juego.start();
-        
-        
-    
     
     }
 }

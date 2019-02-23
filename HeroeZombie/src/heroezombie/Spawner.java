@@ -45,22 +45,21 @@ public class Spawner {
                         break;
                 case 4: handler.addObject(new EnemigoRapido(Juego.ancho-100,Juego.alto-100,ID.EnemigoRapido,handler));
                         break;
-                case 6: handler.addObject(new EnemigoRapido(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoRapido,handler));
+                case 6: handler.addObject(new EnemigoRapido(Juego.ancho-200,Juego.alto-100,ID.EnemigoRapido,handler));
                         break;
-                case 7: handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoBasico,handler));
+                case 7: handler.addObject(new EnemigoBasico(Juego.ancho-200,Juego.alto-100,ID.EnemigoBasico,handler));
                         break;
+                case 8: handler.addObject(new SmartEnemy(Juego.ancho/2-32,Juego.alto/2-32,ID.SmartEnemy,handler));
+                		break;
             }
             
-            if (hud.getLevel() == 10) {
+            if (hud.getLevel() == 15) {
                 handler.limpiarEnemigos();
                 handler.addObject(new Boss((Juego.ancho / 2)-48,-120,ID.Boss,handler,Color.red));
                 
             }   
                 
              
-        }
-        if(HUD.vida <=0) {
-        	System.exit(1);
         }
     }
     

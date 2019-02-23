@@ -8,7 +8,9 @@ package heroezombie;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.Random;
 
@@ -29,6 +31,8 @@ public class Juego extends Canvas implements Runnable {
     
     private Thread thread;
     
+    BufferedImage imagen;
+    
     private boolean running=false;
     
     private Handler handler;
@@ -41,9 +45,11 @@ public class Juego extends Canvas implements Runnable {
     
     private Menu menu;
     
+    
     public enum STATE{
         Menu,
         Help,
+        End,
         Game
     };
     
@@ -54,21 +60,23 @@ public class Juego extends Canvas implements Runnable {
     public Juego(){
         handler = new Handler();
         
-        menu = new Menu(this,handler);
+        hud = new HUD();
+        
+        menu = new Menu(this,handler,hud);
         
         this.addKeyListener(new KeyInput(handler));
         
         this.addMouseListener(menu);
         
-        new Ventana (ancho, alto,"Heroe Zombie",this);
-        
-        hud = new HUD();
+        new Ventana (ancho, alto,"Heroe Zombie",this);           
         
         spawner = new Spawner (handler, hud);
         
         r = new Random();
         
         new Music();
+        
+       
         
     }
     
@@ -116,7 +124,7 @@ public class Juego extends Canvas implements Runnable {
                             if(System.currentTimeMillis() - timer > 1000)
                             {
                                 timer += 1000;
-                                //System.out.println("FPS: "+ frames);
+                                System.out.println("FPS: "+ frames);
                                 frames = 0;
                             }
         }
@@ -129,7 +137,16 @@ public class Juego extends Canvas implements Runnable {
         if (gameState == STATE.Game) {
         hud.tick();
         spawner.tick();
-        }else if(gameState == STATE.Menu || gameState == STATE.Help) {
+        
+        if(HUD.vida <= 0) {
+        	HUD.vida = 100;      
+        	gameState = STATE.End;
+        	handler.limpiarEnemigos();
+        	
+        	
+        }
+        
+        }else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End) {
         	menu.tick();
         }
     }
@@ -149,7 +166,7 @@ public class Juego extends Canvas implements Runnable {
       
         if (gameState == STATE.Game) {
             hud.render(g);    
-        }else if(gameState == STATE.Menu || gameState == STATE.Help){
+        }else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End){
         	menu.render(g);
         }
       g.dispose();

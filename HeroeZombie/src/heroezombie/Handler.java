@@ -10,6 +10,8 @@ import static heroezombie.Juego.ancho;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+import heroezombie.Juego.STATE;
+
 /**
  *
  * @author gustavo
@@ -53,9 +55,10 @@ public class Handler {
                 
                 object.clear();
                 
-                addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,this));
-                //el jugador va a aparecer en la posicion en la que estaba
-                //addObject(new Jugador((int)tempObject.getX(),(int)tempObject.getY(),ID.Jugador,this));
+                if(Juego.gameState != STATE.End) {
+                	 addObject(new Jugador(ancho/2-32,alto/2-32,ID.Jugador,this));
+                }
+               
                 
             }
         }

@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
+
 import heroezombie.Juego.STATE;
 
 public class Menu extends MouseAdapter {
@@ -15,13 +16,16 @@ public class Menu extends MouseAdapter {
 	private Random r;
 	private boolean stop=true;
 	private Music music;
+	private HUD hud;
 	
 	
-	public Menu(Juego juego , Handler handler) {
+	public Menu(Juego juego , Handler handler, HUD hud) {
 		this.juego = juego;
 		this.handler = handler;
+		this.hud = hud;
 		r = new Random();
 		music = new Music();
+		
 		
 	}
 	
@@ -32,33 +36,44 @@ public class Menu extends MouseAdapter {
 		
 
 		
-		if(stop) {
-			//play button
-			if(mouseOver(mx,my,255, 215, 100, 50)) {
-			 juego.gameState = STATE.Game;
-			 handler.addObject(new Jugador(Juego.ancho/2-32,Juego.alto/2-32,ID.Jugador,handler));
-			 System.out.println(getClass().getResource("/zombiekiller/HeroeZombie/src/audio/TeknoAXE.mp3"));
-        	 handler.addObject(new EnemigoBasico(r.nextInt(Juego.ancho)-100, r.nextInt(Juego.alto)-100,ID.EnemigoBasico,handler));
-        	 music.play(getClass().getResource("TeknoAXE.mp3"));
-        	 stop=false;
+			if(juego.gameState == STATE.Menu) {
+				//play button
+				if(mouseOver(mx,my,255, 215, 100, 50)) {
+				 juego.gameState = STATE.Game;
+				 handler.addObject(new EnemigoBasico(Juego.ancho-50,Juego.alto-50,ID.EnemigoBasico,handler));
+				 handler.addObject(new Jugador(Juego.ancho/2-32,Juego.alto/2-32,ID.Jugador,handler));
+	        	 
+				}
+				
+			
+				//quit button
+				if(mouseOver(mx,my,255, 355, 100, 50)) {
+				System.exit(1);
+				}
+				
+				//ayuda button
+				if(mouseOver(mx,my,255, 285, 100, 50)) {
+					juego.gameState = STATE.Help;
+				}
 			}
 			
-			//ayuda button
-			if(mouseOver(mx,my,255, 285, 100, 50)) {
-				juego.gameState = STATE.Help;
-			}
-		
-			//quit button
-			if(mouseOver(mx,my,255, 355, 100, 50)) {
-			System.exit(1);
+			if(juego.gameState == STATE.Help) {
+				//volver button
+				if(mouseOver(mx,my,255, 255, 100, 50)) {
+					juego.gameState = STATE.Menu;
+				}
 			}
 			
-			//volver button
-			if(mouseOver(mx,my,255, 255, 100, 50)) {
-				juego.gameState = STATE.Menu;
+			if(juego.gameState == STATE.End) {
+				//volver button
+				if(mouseOver(mx,my,255, 255, 100, 50)) {
+					juego.gameState = STATE.Game;
+					hud.setLevel(1);
+		        	hud.setScore(0);
+					handler.addObject(new Jugador(Juego.ancho/2-32,Juego.alto/2-32,ID.Jugador,handler));		        	
+				}
 			}
-		}
-		
+			
 		
 		
 		
@@ -81,6 +96,7 @@ public class Menu extends MouseAdapter {
 		if(juego.gameState == STATE.Menu) {
 			Font font = new Font("consolas",1,50);
 			Font font2 = new Font("consolas",1,30);
+			
 			g.setFont(font);
 			g.setColor(Color.WHITE);
 			g.drawString("ZombieHero!", 164, 90);
@@ -118,10 +134,28 @@ public class Menu extends MouseAdapter {
 			g.drawString("Volver", 264, 290);
 			
 			
+		}else if(juego.gameState == STATE.End) {
+			Font font = new Font("consolas",1,40);
+			Font font2 = new Font("consolas",1,25);
+			g.setFont(font);
+			g.setColor(Color.WHITE);
+			g.drawString("Game Over!", 200, 60);
+			
+			g.setFont(font2);
+			g.setColor(Color.white);
+			g.drawString("Tu puntacion fue de : " + hud.getScore(),128,170);		
+			
+			g.drawRect(255, 255, 100, 50);
+			g.drawString("Volver", 264, 290);
+			
 		}
 		
 	}
 	
 	public void tick() {
+		
+		
 	}
 }
+
+
