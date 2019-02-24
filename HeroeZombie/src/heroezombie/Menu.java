@@ -15,7 +15,6 @@ public class Menu extends MouseAdapter {
 	private Handler handler;
 	private Random r;
 	private boolean stop=true;
-	private Music music;
 	private HUD hud;
 	
 	
@@ -23,10 +22,7 @@ public class Menu extends MouseAdapter {
 		this.juego = juego;
 		this.handler = handler;
 		this.hud = hud;
-		r = new Random();
-		music = new Music();
-		
-		
+		r = new Random();	
 	}
 	
 	public void mousePressed(MouseEvent e) {

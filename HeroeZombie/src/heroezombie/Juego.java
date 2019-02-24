@@ -11,8 +11,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
+
+import javax.swing.JOptionPane;
 
 import heroezombie.Juego.STATE;
 
@@ -35,6 +38,8 @@ public class Juego extends Canvas implements Runnable {
     
     private boolean running=false;
     
+    public static boolean paused = false;
+    
     private Handler handler;
     
     private Random r;
@@ -45,7 +50,10 @@ public class Juego extends Canvas implements Runnable {
     
     private Menu menu;
     
+    private URL url;
     
+    private AudioPlayer audioPlayer;
+          
     public enum STATE{
         Menu,
         Help,
@@ -64,7 +72,7 @@ public class Juego extends Canvas implements Runnable {
         
         menu = new Menu(this,handler,hud);
         
-        this.addKeyListener(new KeyInput(handler));
+        this.addKeyListener(new KeyInput(handler,this));
         
         this.addMouseListener(menu);
         
@@ -74,9 +82,18 @@ public class Juego extends Canvas implements Runnable {
         
         r = new Random();
         
-        new Music();
+        try {
+			url = new URL("/zombiekiller/res/TeknoAXE.ogg");
+			
+		} catch (MalformedURLException e) {
+			JOptionPane.showMessageDialog(this, "el archivo .ogg no se encontro");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
-       
+        audioPlayer.load(url);
+        
+        AudioPlayer.getMusic("music").loop();;
         
     }
     
@@ -133,21 +150,25 @@ public class Juego extends Canvas implements Runnable {
     }
     
     private void tick(){
-        handler.tick();
+   
         if (gameState == STATE.Game) {
-        hud.tick();
-        spawner.tick();
+        	if(!paused) {
+        		hud.tick();
+                spawner.tick();
+                handler.tick();
+                if(HUD.vida <= 0) {
+                	HUD.vida = 100;      
+                	gameState = STATE.End;
+                	handler.limpiarEnemigos();
+        	}
         
-        if(HUD.vida <= 0) {
-        	HUD.vida = 100;      
-        	gameState = STATE.End;
-        	handler.limpiarEnemigos();
         	
         	
         }
         
         }else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End) {
         	menu.tick();
+        	handler.tick();
         }
     }
     
@@ -159,13 +180,18 @@ public class Juego extends Canvas implements Runnable {
           return;
       }
       
+      
+      
       Graphics g = bs.getDrawGraphics();
       g.setColor(Color.black);
       g.fillRect(0, 0, ancho, alto);
       handler.render(g);
       
         if (gameState == STATE.Game) {
-            hud.render(g);    
+            hud.render(g);
+            if(paused) {
+            	g.drawString("PAUSA", 150, 150);
+            }
         }else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End){
         	menu.render(g);
         }
@@ -186,8 +212,7 @@ public class Juego extends Canvas implements Runnable {
     public static void main(String[] args) {
         
         new Juego();
-        
-        
+              
     }
     
 }

@@ -8,6 +8,10 @@ package heroezombie;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import org.newdawn.slick.Game;
+
+import heroezombie.Juego.STATE;
+
 /**
  *
  * @author gustavo
@@ -16,9 +20,11 @@ public class KeyInput extends KeyAdapter {
     
     private Handler handler;
     private boolean [] keyDown = new boolean[4];
+    Juego juego;
     
-    public KeyInput(Handler handler){
+    public KeyInput(Handler handler,Juego juego){
         this.handler = handler;
+        this.juego = juego;
         keyDown[0]=false;
         keyDown[1]=false;
         keyDown[2]=false;
@@ -41,6 +47,14 @@ public class KeyInput extends KeyAdapter {
             }
             
             
+        }
+        
+        if(key == KeyEvent.VK_P) {
+        	if(Juego.gameState == STATE.Game) {
+        		if(Juego.paused)Juego.paused = false;
+            	else Juego.paused = true;
+        	}
+        	
         }
         
         if (key == KeyEvent.VK_ESCAPE) {
