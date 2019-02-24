@@ -66,6 +66,18 @@ public class Juego extends Canvas implements Runnable {
     //////////METODOS//////////
     
     public Juego(){
+    	   try {
+   			url = new URL("");
+   			
+   		} catch (MalformedURLException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   		}
+           
+        audioPlayer.load(url);
+           
+        audioPlayer.getMusic("music").loop();;
+    	
         handler = new Handler();
         
         hud = new HUD();
@@ -82,18 +94,7 @@ public class Juego extends Canvas implements Runnable {
         
         r = new Random();
         
-        try {
-			url = new URL("/zombiekiller/res/TeknoAXE.ogg");
-			
-		} catch (MalformedURLException e) {
-			JOptionPane.showMessageDialog(this, "el archivo .ogg no se encontro");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        audioPlayer.load(url);
-        
-        AudioPlayer.getMusic("music").loop();;
+     
         
     }
     
