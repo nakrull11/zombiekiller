@@ -13,11 +13,10 @@ public class AudioPlayer {
 	public static HashMap<String, Sound> soundMap = new HashMap<String, Sound>();
 	public static HashMap<String, Music> musicMap = new HashMap<String,Music>();
 	
-	public void load(URL filePath) {
+	public void load(String filePath) {
 		
 		try {
-			java.net.URL res = getClass().getResource(filePath.toString());
-			musicMap.put("music",new Music(res));
+			musicMap.put("music",new Music(filePath));
 			
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block

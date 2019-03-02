@@ -36,7 +36,7 @@ public class Menu extends MouseAdapter {
 				//play button
 				if(mouseOver(mx,my,255, 215, 100, 50)) {
 				 juego.gameState = STATE.Game;
-				 handler.addObject(new EnemigoBasico(Juego.ancho-50,Juego.alto-50,ID.EnemigoBasico,handler));
+				 //handler.addObject(new EnemigoBasico(Juego.ancho-50,Juego.alto-50,ID.EnemigoBasico,handler));
 				 handler.addObject(new Jugador(Juego.ancho/2-32,Juego.alto/2-32,ID.Jugador,handler));
 	        	 
 				}
@@ -63,10 +63,10 @@ public class Menu extends MouseAdapter {
 			if(juego.gameState == STATE.End) {
 				//volver button
 				if(mouseOver(mx,my,255, 255, 100, 50)) {
-					juego.gameState = STATE.Game;
+					juego.gameState = STATE.Menu;
 					hud.setLevel(1);
 		        	hud.setScore(0);
-					handler.addObject(new Jugador(Juego.ancho/2-32,Juego.alto/2-32,ID.Jugador,handler));		        	
+					//handler.addObject(new Jugador(Juego.ancho/2-32,Juego.alto/2-32,ID.Jugador,handler));		        	
 				}
 			}
 			

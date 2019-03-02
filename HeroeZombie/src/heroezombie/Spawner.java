@@ -39,18 +39,20 @@ public class Spawner {
             
             
             switch(level){//cada (nivel -1) va spawnear un enemigo dependiendo del case
-                case 1: handler.addObject(new EnemigoBasico(Juego.ancho-50, Juego.alto-64,ID.EnemigoBasico,handler));
-                        break;
-                case 2: handler.addObject(new EnemigoBasico(Juego.ancho-45,Juego.alto-32,ID.EnemigoBasico,handler));
-                        break;
-                case 4: handler.addObject(new EnemigoRapido(Juego.ancho-100,Juego.alto-100,ID.EnemigoRapido,handler));
-                        break;
-                case 6: handler.addObject(new EnemigoRapido(Juego.ancho-200,Juego.alto-100,ID.EnemigoRapido,handler));
-                        break;
-                case 7: handler.addObject(new EnemigoBasico(Juego.ancho-200,Juego.alto-100,ID.EnemigoBasico,handler));
-                        break;
-                case 8: handler.addObject(new SmartEnemy(Juego.ancho/2-32,Juego.alto/2-32,ID.SmartEnemy,handler));
-                		break;
+            	case 0: handler.addObject(new SmartEnemy(Juego.ancho/2-32,Juego.alto/2-32,ID.SmartEnemy,handler));
+        			break;           	
+                case 3: handler.addObject(new SmartEnemy(Juego.ancho/2-64,Juego.alto/2-32,ID.SmartEnemy,handler));
+        			break;
+                case 4: handler.addObject(new SmartEnemy(Juego.ancho/2-80,Juego.alto/2-32,ID.SmartEnemy,handler));
+        			break;
+                case 5: handler.addObject(new SmartEnemy(Juego.ancho/2-128,Juego.alto/2-32,ID.SmartEnemy,handler));
+        			break;
+                case 8: handler.addObject(new SmartEnemy(Juego.ancho/2-164,Juego.alto/2-32,ID.SmartEnemy,handler));
+        			break;
+                case 9: handler.addObject(new SmartEnemy(Juego.ancho/2-228,Juego.alto/2-32,ID.SmartEnemy,handler));
+        			break;
+                case 10:handler.addObject(new SmartEnemy(Juego.ancho/2-264,Juego.alto/2-32,ID.SmartEnemy,handler));
+                	break;
             }
             
             if (hud.getLevel() == 15) {

@@ -66,18 +66,11 @@ public class Juego extends Canvas implements Runnable {
     //////////METODOS//////////
     
     public Juego(){
-    	   try {
-   			url = new URL("");
+   
+
    			
-   		} catch (MalformedURLException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		}
-           
-        audioPlayer.load(url);
-           
-        audioPlayer.getMusic("music").loop();;
-    	
+   	    
+        
         handler = new Handler();
         
         hud = new HUD();
@@ -94,6 +87,12 @@ public class Juego extends Canvas implements Runnable {
         
         r = new Random();
         
+//        audioPlayer = new AudioPlayer();
+//        
+//        audioPlayer.load("C:\\Users\\gustavo\\Desktop\\gitProjects\\zombiekiller\\res\\TeknoAXE.ogg");
+//        
+//        AudioPlayer.getMusic("music").loop();;
+    	
      
         
     }
