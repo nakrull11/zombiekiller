@@ -8,7 +8,6 @@ package heroezombie;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import org.newdawn.slick.Game;
 
 import heroezombie.Juego.STATE;
 
