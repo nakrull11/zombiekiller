@@ -40,10 +40,7 @@ public class ProyectilBoss extends GameObject{
         if(y >= Juego.alto) handler.removeObject(this);
         
         handler.addObject(new Trial(x,y,ID.ProyectilBoss,handler,Color.yellow,4,4,0.04f));
-        
-        
-        
-        
+           
 
     }
 

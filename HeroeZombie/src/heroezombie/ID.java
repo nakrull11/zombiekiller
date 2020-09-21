@@ -17,6 +17,8 @@ public enum ID {
     SmartEnemy(),
     Boss(),
     ProyectilBoss(),
+    ProyectilJugadorArma(),
+    Bloque(),
     Trial();
     
 }

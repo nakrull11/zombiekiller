@@ -30,11 +30,11 @@ public class Juego extends Canvas implements Runnable {
      */
     
     //////////VARIABLES/////////
-    public static final int ancho = 640, alto= ancho / 12 * 9;
-    
+    public static final int ancho = 1366 , alto = 768;
+    // alto = ancho /12*9;
     private Thread thread;
     
-    BufferedImage imagen;
+    private BufferedImage levelLayout = null;
     
     private boolean running=false;
     
@@ -66,10 +66,8 @@ public class Juego extends Canvas implements Runnable {
     //////////METODOS//////////
     
     public Juego(){
-   
-
-   			
-   	    
+        
+        new Ventana (ancho, alto,"Heroe Zombie",this);
         
         handler = new Handler();
         
@@ -81,11 +79,15 @@ public class Juego extends Canvas implements Runnable {
         
         this.addMouseListener(menu);
         
-        new Ventana (ancho, alto,"Heroe Zombie",this);           
+        BufferedImageLoader loader = new BufferedImageLoader();
+        levelLayout = loader.loadImage("/zombiemapLayoutt.png");
+        LoadLevel(levelLayout);      
         
         spawner = new Spawner (handler, hud);
         
         r = new Random();
+        
+        
         
 //        audioPlayer = new AudioPlayer();
 //        
@@ -141,7 +143,7 @@ public class Juego extends Canvas implements Runnable {
                             if(System.currentTimeMillis() - timer > 1000)
                             {
                                 timer += 1000;
-                                System.out.println("FPS: "+ frames);
+                                //System.out.println("FPS: "+ frames);
                                 frames = 0;
                             }
         }
@@ -179,12 +181,12 @@ public class Juego extends Canvas implements Runnable {
           this.createBufferStrategy(3);
           return;
       }
-      
-      
-      
       Graphics g = bs.getDrawGraphics();
+      
+      /////////////////////////////Fondo de la pantalla/////////////////////////////
       g.setColor(Color.black);
       g.fillRect(0, 0, ancho, alto);
+      /////////////////////////////
       handler.render(g);
       
         if (gameState == STATE.Game) {
@@ -197,6 +199,35 @@ public class Juego extends Canvas implements Runnable {
         }
       g.dispose();
       bs.show();
+    }
+    
+    private void LoadLevel(BufferedImage image){
+        int anchura = image.getWidth();
+        int largo = image.getHeight();
+        
+        for (int i = 0; i < anchura; i++) {
+            for (int j = 0; j < largo; j++) {
+            int pixel = image.getRGB(i, j);
+            
+            int red = (pixel >> 16) & 0xff;
+            System.out.printf(" "+ red);
+            
+            
+            int green = (pixel >> 8) & 0xff;
+            
+            
+            int blue = (pixel) & 0xff;
+            
+            if(red == 255){
+                handler.addObject(new Bloque(i*32,j*32,ID.Bloque));
+            }
+            
+            if(blue == 255){
+                handler.addObject(new Jugador(i*32,j*32,ID.Jugador,handler));
+            }
+            }
+            
+        }
     }
     
     public static float clamp(float var, float min, float max){

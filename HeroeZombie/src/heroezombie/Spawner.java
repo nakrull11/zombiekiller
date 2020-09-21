@@ -39,7 +39,7 @@ public class Spawner {
             
             
             switch(level){//cada (nivel -1) va spawnear un enemigo dependiendo del case
-            	case 0: handler.addObject(new SmartEnemy(Juego.ancho/2-32,Juego.alto/2-32,ID.SmartEnemy,handler));
+            	case 1: handler.addObject(new SmartEnemy(Juego.ancho/2-32,Juego.alto/2-32,ID.SmartEnemy,handler));                        
         			break;           	
                 case 3: handler.addObject(new SmartEnemy(Juego.ancho/2-64,Juego.alto/2-32,ID.SmartEnemy,handler));
         			break;
@@ -58,7 +58,7 @@ public class Spawner {
             if (hud.getLevel() == 15) {
                 handler.limpiarEnemigos();
                 handler.addObject(new Boss((Juego.ancho / 2)-48,-120,ID.Boss,handler,Color.red));
-                
+               
             }   
                 
              

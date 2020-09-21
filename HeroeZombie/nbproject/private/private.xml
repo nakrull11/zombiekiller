@@ -2,6 +2,23 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Boss.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/HUD.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/ProyectilBoss.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Spawner.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Handler.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Juego.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/ProyectilJugadorArma.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Menu.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/GameObject.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/EnemigoBasico.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Ventana.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/KeyInput.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/BufferedImageLoader.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Bloque.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/ID.java</file>
+            <file>file:/C:/Users/gustavo/Documents/NetBeansProjects/zombiekiller/HeroeZombie/src/heroezombie/Jugador.java</file>
+        </group>
     </open-files>
 </project-private>

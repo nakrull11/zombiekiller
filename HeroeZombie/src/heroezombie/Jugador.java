@@ -36,16 +36,24 @@ public class Jugador extends GameObject {
         
         x = Juego.clamp(x, 0, Juego.ancho-37);
         y = Juego.clamp(y, 0, Juego.alto-60);
+        
+        GameObject obj = colision();
+        
+        //System.out.println(obj.id);
+        //if (obj.id == ID.Bloque) {
+            //x = Juego.clamp(obj.getX(), 0, obj.getX());
+            //y = Juego.clamp(obj.getY(), 0, obj.getY());
+        //}
         //handler.addObject(new Trial(x,y,ID.Jugador,handler,Color.BLUE,32,32,0.09f));
-        colision();
        
     }
     
-    private void colision() {
+    private GameObject colision() {
         boolean collisionOccured;
+        GameObject obj = null;
         for (int i = 0; i < handler.object.size(); i++) {
-            GameObject obj = handler.object.get(i);
-            if (obj.getId() != ID.Jugador) {
+             obj = handler.object.get(i);
+            if (obj.getId() != ID.Jugador && obj.getId() != ID.Bloque) {
                 Rectangle rec1 = getBounds();
                 Rectangle rec2 = obj.getBounds();
                 if (rec2 != null && rec1 != null) {
@@ -55,7 +63,9 @@ public class Jugador extends GameObject {
                     }
                 }
             }
+            
         }
+        return obj;
     }
     
     
